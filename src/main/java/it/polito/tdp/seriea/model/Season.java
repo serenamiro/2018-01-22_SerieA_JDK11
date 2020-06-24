@@ -1,13 +1,45 @@
 package it.polito.tdp.seriea.model;
 
-public class Season {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Season implements Comparable<Season>{
 	private int season;
 	private String description;
+	private List<MatchSemplice> matches;
+	private Integer puntiClassifica;
+	private Integer valoreDifferenzaPesoArchi;
+
+	public Integer getValoreDifferenzaPesoArchi() {
+		return valoreDifferenzaPesoArchi;
+	}
+
+	public void setValoreDifferenzaPesoArchi(Integer valoreDifferenzaPesoArchi) {
+		this.valoreDifferenzaPesoArchi = valoreDifferenzaPesoArchi;
+	}
 
 	public Season(int season, String description) {
 		super();
 		this.season = season;
 		this.description = description;
+		this.matches = new ArrayList<MatchSemplice>();
+		this.puntiClassifica = 0;
+	}
+
+	public Integer getPuntiClassifica() {
+		return puntiClassifica;
+	}
+
+	public void setPuntiClassifica(Integer puntiClassifica) {
+		this.puntiClassifica = puntiClassifica;
+	}
+
+	public List<MatchSemplice> getMatches() {
+		return matches;
+	}
+
+	public void setMatches(List<MatchSemplice> matches) {
+		this.matches = matches;
 	}
 
 	/**
@@ -79,7 +111,12 @@ public class Season {
 	 */
 	@Override
 	public String toString() {
-		return description;
+		return this.season+" - "+this.puntiClassifica;
+	}
+
+	@Override
+	public int compareTo(Season o) {
+		return this.season-o.getSeason();
 	}
 
 }
